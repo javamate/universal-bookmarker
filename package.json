@@ -14,24 +14,24 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "preact": "^10.27.2",
-    "algoliasearch": "^4.24.0",
-    "instantsearch.js": "^4.73.3",
     "@preact/signals": "^1.2.3",
-    "preact-router": "^4.1.2",
+    "algoliasearch": "^4.24.0",
     "cheerio": "^1.0.0",
+    "crypto-js": "^4.2.0",
+    "instantsearch.js": "^4.73.3",
     "jsdom": "^25.0.1",
-    "crypto-js": "^4.2.0"
+    "preact": "^10.27.2",
+    "preact-router": "^4.1.2"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.2",
+    "@types/chrome": "^0.0.268",
+    "@types/crypto-js": "^4.2.2",
+    "@types/jsdom": "^21.1.7",
     "@types/node": "^24.10.1",
     "typescript": "~5.9.3",
     "vite": "^7.2.4",
-    "@types/chrome": "^0.0.268",
-    "@types/jsdom": "^21.1.7",
-    "@types/crypto-js": "^4.2.2",
     "vite-plugin-web-extension": "^4.1.1",
-    "web-ext": "^8.3.0"
+    "web-ext": "^9.2.0"
   }
 }
