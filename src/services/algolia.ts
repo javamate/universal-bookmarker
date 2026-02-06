@@ -133,6 +133,7 @@ export class AlgoliaService {
     const categoriesIndex = adminClient.initIndex(`${this.config.categoriesIndexName}_${userId}`);
 
     // Configure bookmarks index
+    // @ts-ignore
     await bookmarksIndex.setSettings({
       searchableAttributes: ['name', 'url', 'content.title', 'content.description', 'content.summary', 'content.fullText', 'tags', 'categories'],
       attributesForFaceting: ['categories', 'tags', 'privacy.isEncrypted'],
@@ -148,6 +149,7 @@ export class AlgoliaService {
     });
 
     // Configure categories index
+    // @ts-ignore
     await categoriesIndex.setSettings({
       searchableAttributes: ['name', 'path'],
       attributesForFaceting: ['parentId'],

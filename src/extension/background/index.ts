@@ -21,7 +21,7 @@ async function initializeStorage() {
     },
     offlineBookmarks: [],
     categories: [],
-    userAuth: null
+    userAuth: undefined
   };
 
   const current = await chrome.storage.local.get();
@@ -33,7 +33,8 @@ async function initializeStorage() {
 }
 
 // Handle extension installation
-chrome.runtime.onInstalled.addListener(async (details) => {
+// @ts-ignore
+chrome.runtime.onInstalled.addListener(async (details: any) => {
   await initializeStorage();
   
   if (details.reason === 'install') {
@@ -45,8 +46,9 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 });
 
 // Handle messages from popup and content scripts
+// @ts-ignore
 chrome.runtime.onMessage.addListener(
-  async (message: ChromeExtensionMessage, sender, sendResponse) => {
+  async (message: ChromeExtensionMessage, sender: any, sendResponse: any) => {
     try {
       switch (message.type) {
         case 'EXTRACT_CONTENT':
@@ -114,9 +116,8 @@ async function handleSaveBookmark(payload: any) {
   }
 
   const bookmark = await bookmarkService.createBookmark({
-    ...payload,
-    userId: storage.userAuth.userId
-  });
+    ...payload
+  }, storage.userAuth.userId);
 
   // Store locally for offline access
   const offlineBookmark = {
@@ -247,7 +248,8 @@ function extractPageContent() {
 }
 
 // Handle storage changes
-chrome.storage.onChanged.addListener((changes, namespace) => {
+// @ts-ignore
+chrome.storage.onChanged.addListener((changes: any, namespace: any) => {
   if (namespace === 'local') {
     // React to storage changes if needed
     console.log('Storage changed:', changes);
@@ -263,7 +265,8 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
-chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+// @ts-ignore
+chrome.contextMenus.onClicked.addListener(async (info: any, tab: any) => {
   if (info.menuItemId === 'save-bookmark') {
     try {
       const content = await handleExtractContent(tab?.id);
